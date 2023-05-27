@@ -24,6 +24,5 @@ cleaned_df.repartition(3).write. \
     format("parquet"). \
     save(output_path)
 
-
 # 停止SparkSession
 spark.stop()
