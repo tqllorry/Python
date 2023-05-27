@@ -17,6 +17,7 @@ cleaned_df = spark.sql("""
 # /Users/TQL/work/data/dept_data/result/20000101
 # cleaned_df.show()
 
+
 # 将数据写回本地文件
 output_path = "file:///Users/TQL/work/data/dept_data/result/20000101"
 cleaned_df.repartition(3).write. \
