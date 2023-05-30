@@ -4,7 +4,7 @@ from pyspark.sql import SparkSession
 spark = SparkSession.builder.appName("JsonParsingApp").master("local[*]").getOrCreate()
 
 # 读取本地文件
-input_path = "file:///Users/tangqiliang/Documents/files/openapi_logs/jsons/1201~1212/1"
+input_path = "file:///Users/tangqiliang/Documents/files/openapi_logs/jsons/1102/1"
 df = spark.read.json(input_path)
 df.createOrReplaceTempView("my_json")
 
@@ -24,7 +24,7 @@ cleaned_df = spark.sql("""
 # cleaned_df.show()
 
 # 将数据写回本地文件
-output_path = "file:///Users/tangqiliang/Documents/files/openapi_logs/results/1201~1212"
+output_path = "file:///Users/tangqiliang/Documents/files/openapi_logs/results/1102"
 cleaned_df.repartition(3).write. \
     mode("overwrite"). \
     format("parquet"). \

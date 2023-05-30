@@ -4,7 +4,7 @@ from pyspark.sql import SparkSession
 spark = SparkSession.builder.appName("csvParsingApp").master("local[*]").getOrCreate()
 
 # 读取本地文件
-input_path = "file:///Users/tangqiliang/Documents/files/dept/csv/0430"
+input_path = "file:///Users/tangqiliang/Documents/files/dept/csv/0507"
 df = spark.read.option("header", True).csv(input_path)
 df.createOrReplaceTempView("my_dept")
 
@@ -14,11 +14,9 @@ cleaned_df = spark.sql("""
     union all
     select company_id_copy,staff_id_copy,dept1_copy,dept2_copy,dept3_copy,dept4_copy,dept5_copy from my_dept
 """)
-# /Users/TQL/work/data/dept_data/result/20000101
-# cleaned_df.show()
 
 # 将数据写回本地文件
-output_path = "file:///Users/tangqiliang/Documents/files/dept/result/0430"
+output_path = "file:///Users/tangqiliang/Documents/files/dept/result/0507"
 cleaned_df.write. \
     mode("overwrite"). \
     format("parquet"). \
